@@ -1,6 +1,7 @@
 const mineflayer = require('mineflayer')
 const cmd = require('mineflayer-cmd').plugin
 const fs = require('fs');
+const http = require('http');
 let rawdata = fs.readFileSync('config.json');
 let data = JSON.parse(rawdata);
 var lasttime = -1;
@@ -24,6 +25,14 @@ function getRandomArbitrary(min, max) {
        return Math.random() * (max - min) + min;
 
 }
+
+http.createServer(function (req, res){
+    if(req.url == '/'){
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write('WOW');
+        res.end();
+    }
+});
 
 bot.loadPlugin(cmd)
 
